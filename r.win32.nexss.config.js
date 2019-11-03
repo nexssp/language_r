@@ -6,11 +6,11 @@ languageConfig.url = "https://cran.r-project.org/";
 languageConfig.extensions = [".r"];
 languageConfig.builders = {};
 languageConfig.compilers = {
-  php7: {
+  rscript: {
     install: "scoop install r",
     // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
     command: "rscript",
-    args: "<file>",
+    args: "--vanilla --slave <file>",
     help: ``
   }
 };
@@ -18,12 +18,11 @@ languageConfig.errors = require("./nexss.r.errors");
 languageConfig.languagePackageManagers = {
   npm: {
     //tODO r package manager
-    installation: "PowerShell.exe -File installComposer.ps1",
-    messageAfterInstallation:
-      "Add to the top of your php file(s): require __DIR__ . '/vendor/autoload.php';", //this message will be displayed after this package manager installation, maybe some action needed etc.
+    installation: "",
+    messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
     installed: "composer installed <args>",
     search: "composer search <args>",
-    install: "composer require <args>",
+    install: `Rscript -e 'install.packages("<args>", repos="https://cran.rstudio.com")'"`,
     uninstall: "composer remove <args>",
     help: "composer <args>",
     version: "composer version",
