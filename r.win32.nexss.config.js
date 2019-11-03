@@ -5,6 +5,9 @@ languageConfig.description =
 languageConfig.url = "https://cran.r-project.org/";
 languageConfig.extensions = [".r"];
 languageConfig.builders = {};
+// English errors
+process.env["language"] = "EN";
+
 languageConfig.compilers = {
   rscript: {
     install: "scoop install r",
@@ -20,16 +23,16 @@ languageConfig.languagePackageManagers = {
     //tODO r package manager
     installation: "",
     messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
-    installed: "composer installed <args>",
-    search: "composer search <args>",
-    install: `Rscript -e 'install.packages("<args>", repos="https://cran.rstudio.com")'"`,
-    uninstall: "composer remove <args>",
-    help: "composer <args>",
-    version: "composer version",
+    installed: `Rscript -e 'str(installed.packages(.Library, priority = "high"))'`,
+    search: "composer search",
+    install: `Rscript -e 'install.packages("<PackageName>", repos="https://cran.rstudio.com")'"`,
+    uninstall: `Rscript -e 'uninstall.packages("<PackageName>")'`,
+    help: "",
+    version: "RScript --version",
     init: () => {},
     // if command not found in specification
     // run directly on package manager
-    else: "composer <default> <args>"
+    else: "RScript"
   }
 };
 
