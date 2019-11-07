@@ -8,7 +8,7 @@ library("rjson")
 f <- file("stdin")
 open(f)
 
-while(length(line <- readLines(f,n=1)) > 0) {
+while(length(line <- readLines(f, n=1, warn=FALSE)) > 0) {
   NexssStdout <- fromJSON(toString(line))
   
 #   rVersion = paste(R.Version()$major,".",R.Version()$minor, sep="")

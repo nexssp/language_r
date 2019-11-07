@@ -1,7 +1,4 @@
 module.exports = {
-  win32: {
-    "ModuleNotFoundError: No module named '(.*?)'":
-      "nexss install py <module> OR pip3 install <module>",
-    "not found": `nexss install py <module> OR pip3 install <module>`
-  }
+  "incomplete final line found":
+    "Maybe you want to add warn=FALSE, eg: readLines(f, n=1, warn=FALSE) "
 };
