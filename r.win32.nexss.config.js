@@ -11,7 +11,6 @@ process.env["language"] = "EN";
 languageConfig.compilers = {
   rscript: {
     install: "scoop install r",
-    // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
     command: "rscript",
     args: "--vanilla --slave <file>",
     help: ``
