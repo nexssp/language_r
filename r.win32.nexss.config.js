@@ -3,6 +3,9 @@ languageConfig.title = "R";
 languageConfig.description =
   "R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc.";
 languageConfig.url = "https://cran.r-project.org/";
+languageConfig.founders = ["George Ross Ihaka", "Robert Gentleman"];
+languageConfig.developers = ["R Core Team"];
+languageConfig.years = ["1993"];
 languageConfig.extensions = [".r"];
 languageConfig.builders = {};
 // English errors
