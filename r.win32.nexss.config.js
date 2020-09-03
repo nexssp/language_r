@@ -1,4 +1,7 @@
-let languageConfig = Object.assign({}, require("../config.win32"));
+let languageConfig = Object.assign(
+  {},
+  require(`../config.${process.platform}`)
+);
 languageConfig.title = "R";
 languageConfig.description =
   "R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc.";
@@ -16,8 +19,8 @@ languageConfig.compilers = {
     install: "scoop install r",
     command: "rscript",
     args: "--vanilla --slave <file>",
-    help: ``
-  }
+    help: ``,
+  },
 };
 languageConfig.errors = require("./nexss.r.errors");
 languageConfig.languagePackageManagers = {
@@ -34,8 +37,8 @@ languageConfig.languagePackageManagers = {
     init: () => {},
     // if command not found in specification
     // run directly on package manager
-    else: "RScript"
-  }
+    else: "RScript",
+  },
 };
 
 module.exports = languageConfig;
