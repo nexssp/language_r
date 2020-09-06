@@ -6,7 +6,7 @@ if (process.getuid && process.getuid() === 0) {
 languageConfig.compilers = {
   rscript: {
     install: `${sudo}apt install -y r-base`,
-    command: "rscript",
+    command: "R",
     args: "--vanilla --slave <file>",
     help: ``,
   },
