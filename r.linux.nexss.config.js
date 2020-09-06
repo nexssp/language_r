@@ -1,7 +1,7 @@
 let languageConfig = Object.assign({}, require("./r.win32.nexss.config"));
-let sudo = "";
+let sudo = "sudo ";
 if (process.getuid && process.getuid() === 0) {
-  sudo = "sudo ";
+  sudo = "";
 }
 languageConfig.compilers = {
   rscript: {
