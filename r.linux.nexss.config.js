@@ -12,4 +12,24 @@ languageConfig.compilers = {
   },
 };
 
+const {
+  replaceCommandByDist,
+  dist,
+} = require(`${process.env.NEXSS_SRC_PATH}/lib/osys`);
+
+const distName = dist();
+languageConfig.dist = distName;
+
+// TODO: Later to cleanup this config file !!
+switch (distName) {
+  case "Arch Linux":
+    languageConfig.compilers.rscript.install = `${sudo}pacman -Sy --noconfirm gcc-fortran r make`;
+    break;
+  default:
+    languageConfig.compilers.rscript.install = replaceCommandByDist(
+      languageConfig.compilers.rscript.install
+    );
+    break;
+}
+
 module.exports = languageConfig;
