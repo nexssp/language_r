@@ -22,6 +22,9 @@ languageConfig.dist = distName;
 
 // TODO: Later to cleanup this config file !!
 switch (distName) {
+  case "Alpine Linux":
+    languageConfig.compilers.rscript.install = `${sudo}apk add build-base gcc wget R R-dev make`;
+    break;
   case "Arch Linux":
     languageConfig.compilers.rscript.install = `${sudo}pacman -Sy --noconfirm gcc-fortran r make`;
     break;
