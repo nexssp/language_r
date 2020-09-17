@@ -22,6 +22,10 @@ languageConfig.dist = distName;
 
 // TODO: Later to cleanup this config file !!
 switch (distName) {
+  case "openSUSE Leap":
+  case "openSUSE Tumbleweed":
+    languageConfig.compilers.rscript.install = `${sudo}zypper -n install R-base`;
+    break;
   case "Alpine Linux":
     languageConfig.compilers.rscript.install = `${sudo}apk add build-base gcc wget R R-dev make`;
     break;
