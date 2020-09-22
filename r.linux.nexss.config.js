@@ -29,6 +29,9 @@ switch (distName) {
   case os.distros.ORACLE:
     languageConfig.compilers.rscript.install = `${sudo}yum install -y R.*`;
     break;
+  case os.distros.FEDORA:
+    languageConfig.compilers.rscript.install = `${sudo}dnf install -y R`;
+    break;
   default:
     languageConfig.compilers.rscript.install = os.replacePMByDistro(
       languageConfig.compilers.rscript.install
