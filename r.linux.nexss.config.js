@@ -27,10 +27,10 @@ switch (distName) {
     languageConfig.compilers.rscript.install = `${sudo}pacman -Sy --noconfirm gcc-fortran r make`;
     break;
   case os.distros.ORACLE:
-    languageConfig.compilers.rscript.install = `${sudo}yum --enablerepo=rhel-optional install -y R`;
+    languageConfig.compilers.rscript.install = `${sudo}yum install -y R.*`;
     break;
   default:
-    languageConfig.compilers.rscript.install = replaceCommandByDist(
+    languageConfig.compilers.rscript.install = os.replacePMByDistro(
       languageConfig.compilers.rscript.install
     );
     break;
