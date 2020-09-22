@@ -1,8 +1,7 @@
 let languageConfig = Object.assign({}, require("./r.win32.nexss.config"));
-let sudo = "sudo ";
-if (process.getuid && process.getuid() === 0) {
-  sudo = "";
-}
+const os = require("@nexssp/os");
+let sudo = os.sudo();
+
 languageConfig.compilers = {
   rscript: {
     install: `${sudo}apt install -y r-base`,
@@ -12,25 +11,23 @@ languageConfig.compilers = {
   },
 };
 
-const {
-  replaceCommandByDist,
-  dist,
-} = require(`${process.env.NEXSS_SRC_PATH}/lib/osys`);
-
-const distName = dist();
+const distName = os.name();
 languageConfig.dist = distName;
 
 // TODO: Later to cleanup this config file !!
 switch (distName) {
-  case "openSUSE Leap":
-  case "openSUSE Tumbleweed":
+  case os.distros.SUSE_LEAP:
+  case os.distros.SUSE_TUMBLEWEED:
     languageConfig.compilers.rscript.install = `${sudo}zypper -n install R-base npm`;
     break;
-  case "Alpine Linux":
+  case os.distros.ALPINE:
     languageConfig.compilers.rscript.install = `${sudo}apk add build-base gcc wget R R-dev make`;
     break;
-  case "Arch Linux":
+  case os.distros.ARCH:
     languageConfig.compilers.rscript.install = `${sudo}pacman -Sy --noconfirm gcc-fortran r make`;
+    break;
+  case os.distros.ORACLE:
+    languageConfig.compilers.rscript.install = `${sudo}yum --enablerepo=rhel-optional install -y R`;
     break;
   default:
     languageConfig.compilers.rscript.install = replaceCommandByDist(
