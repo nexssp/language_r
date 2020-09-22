@@ -2,7 +2,6 @@
   "name": "language_r.git",
   "version": "1.0.0",
   "description": "To Install Nexss Programmer please go to [Nexss Programmer CLI](https://github.com/nexssp/cli#readme) for more information.",
-  "main": "nexss.r.errors.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +11,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nexssp/language_r/issues"
   },
