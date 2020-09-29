@@ -16,6 +16,10 @@ languageConfig.dist = distName;
 
 // TODO: Later to cleanup this config file !!
 switch (distName) {
+  case os.distros.AMAZON:
+    languageConfig.compilers.rscript.install = `${sudo}amazon-linux-extras enable R3.4
+${sudo}yum install -y install procps R`;
+    break;
   case os.distros.SUSE_LEAP:
   case os.distros.SUSE_TUMBLEWEED:
     languageConfig.compilers.rscript.install = `${sudo}zypper -n install R-base npm`;
@@ -27,10 +31,15 @@ switch (distName) {
     languageConfig.compilers.rscript.install = `${sudo}pacman -Sy --noconfirm gcc-fortran r make`;
     break;
   case os.distros.ORACLE:
-    languageConfig.compilers.rscript.install = `${sudo}yum install -y R.*`;
+    const v = os.v() * 1;
+    if (v >= 8) {
+      languageConfig.compilers.rscript.install = `${sudo}dnf install -y oracle-epel-release-el8 R.*`;
+    } else {
+      languageConfig.compilers.rscript.install = `${sudo}yum install -y oracle-epel-release-el7 R.*`;
+    }
     break;
   case os.distros.FEDORA:
-    languageConfig.compilers.rscript.install = `${sudo}dnf install -y R-core`;
+    languageConfig.compilers.rscript.install = `${sudo}dnf install -y R-core R-devel`;
     break;
   default:
     languageConfig.compilers.rscript.install = os.replacePMByDistro(
