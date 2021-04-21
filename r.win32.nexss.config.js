@@ -40,7 +40,21 @@ languageConfig.languagePackageManagers = {
     messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
     installed: `Rscript -e 'str(installed.packages(.Library, priority = "high"))'`,
     search: "composer search",
-    install: `Rscript -e 'install.packages("<PackageName>", repos="https://cran.rstudio.com")'"`,
+    // install: `Rscript -e 'install.packages("<PackageName>", repos="http://cran.us.r-project.org")'"`,
+    install: function (args) {
+      const command = `Rscript -e "install.packages('${args}', repos='http://cran.us.r-project.org')"`;
+      require("child_process").execSync(command, { stdio: "inherit" });
+      // console.log(languageConfig);
+      return;
+    },
+    installSource: function (args) {
+      const command = `Rscript -e "install.packages('${args}', repo=NULL, type='source')"`;
+      require("child_process").execSync(command, { stdio: "inherit" });
+    },
+    installGithub: function (args) {
+      const command = `Rscript -e "devtools::install_github('${args}')"`;
+      require("child_process").execSync(command, { stdio: "inherit" });
+    },
     uninstall: `Rscript -e 'uninstall.packages("<PackageName>")'`,
     help: "",
     version: "RScript --version",
