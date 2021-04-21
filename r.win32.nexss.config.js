@@ -17,6 +17,15 @@ process.env["language"] = "EN";
 languageConfig.compilers = {
   rscript: {
     install: "scoop install r",
+    uninstall: "scoop uninstall r",
+    command: "rscript",
+    shell: "R.exe",
+    args: "--vanilla --slave <file>",
+    help: ``,
+  },
+  rtools: {
+    install: "scoop install r rtools",
+    uninstall: "scoop uninstall r rtools",
     command: "rscript",
     shell: "R.exe",
     args: "--vanilla --slave <file>",
@@ -25,7 +34,7 @@ languageConfig.compilers = {
 };
 languageConfig.errors = require("./nexss.r.errors");
 languageConfig.languagePackageManagers = {
-  npm: {
+  rscript: {
     //tODO r package manager
     installation: "",
     messageAfterInstallation: "", //this message will be displayed after this package manager installation, maybe some action needed etc.
