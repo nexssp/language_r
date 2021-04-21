@@ -18,6 +18,7 @@ languageConfig.compilers = {
   rscript: {
     install: "scoop install r",
     command: "rscript",
+    shell: "R.exe",
     args: "--vanilla --slave <file>",
     help: ``,
   },
