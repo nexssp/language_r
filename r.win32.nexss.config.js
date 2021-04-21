@@ -43,16 +43,19 @@ languageConfig.languagePackageManagers = {
     // install: `Rscript -e 'install.packages("<PackageName>", repos="http://cran.us.r-project.org")'"`,
     install: function (args) {
       const command = `Rscript -e "install.packages('${args}', repos='http://cran.us.r-project.org')"`;
+      this.log.info(`Execute ${command}`);
       require("child_process").execSync(command, { stdio: "inherit" });
       // console.log(languageConfig);
       return;
     },
     installSource: function (args) {
       const command = `Rscript -e "install.packages('${args}', repo=NULL, type='source')"`;
+      this.log.info(`Execute ${command}`);
       require("child_process").execSync(command, { stdio: "inherit" });
     },
     installGithub: function (args) {
       const command = `Rscript -e "devtools::install_github('${args}')"`;
+      this.log.info(`Execute ${command}`);
       require("child_process").execSync(command, { stdio: "inherit" });
     },
     uninstall: `Rscript -e 'uninstall.packages("<PackageName>")'`,
