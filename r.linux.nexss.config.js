@@ -16,6 +16,7 @@ languageConfig.dist = distName;
 // TODO: Later to cleanup this config file !!
 switch (distName) {
   case process.distros.AMAZON:
+  case process.distros.AMAZON_AMI:
     languageConfig.compilers.rscript.install = `${sudo}amazon-linux-extras enable R3.4
 ${sudo}yum install -y install procps R`;
     break;
